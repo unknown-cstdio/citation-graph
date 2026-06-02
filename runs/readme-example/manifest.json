@@ -1,0 +1,1070 @@
+{
+  "config": {
+    "depth": 1,
+    "depth_caps": null,
+    "direction": "both",
+    "download_pdfs": false,
+    "effective_ranker": "lexical",
+    "embedding_model": null,
+    "expansion_policy": "selected_frontier_by_ranker",
+    "max_candidates": 8,
+    "max_papers_to_read": 4,
+    "ollama_url": null,
+    "query": "programmable data planes software defined networking packet processing network architecture",
+    "ranker": "lexical",
+    "seed": "DOI:10.1145/2656877.2656890",
+    "semantic_scholar_requests_per_second": 1.0,
+    "use_fallbacks": false
+  },
+  "counts": {
+    "abstract_only": 9,
+    "edges": 8,
+    "papers": 9,
+    "pdfs_downloaded": 0,
+    "selected_for_reading": 4,
+    "warnings": 0
+  },
+  "edges": [
+    {
+      "relation": "reference",
+      "source": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "target": "03a7e38db081d87257e3db4c936362c30ab0d7b0"
+    },
+    {
+      "relation": "citation",
+      "source": "73cb53296af74c1bc2adebb55e84b7fa3bd0546c",
+      "target": "463e7d2a62b1f15cc2daba34230297827e7c6757"
+    },
+    {
+      "relation": "reference",
+      "source": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "target": "77aa217da1e3a078f39d9a84f8627cf1ee0d3a22"
+    },
+    {
+      "relation": "citation",
+      "source": "53e3f6eab8907a12baba620e3e942951aa5dc3df",
+      "target": "463e7d2a62b1f15cc2daba34230297827e7c6757"
+    },
+    {
+      "relation": "reference",
+      "source": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "target": "9c87b042b7bd943cc62ea450b6c6c63303859b34"
+    },
+    {
+      "relation": "citation",
+      "source": "6712ab498dafdc0b076a0a6c52a0c9168fbbd48a",
+      "target": "463e7d2a62b1f15cc2daba34230297827e7c6757"
+    },
+    {
+      "relation": "reference",
+      "source": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "target": "03f907854a690c11686346e0523ac72206d78e50"
+    },
+    {
+      "relation": "citation",
+      "source": "c45df6d02b60821d2de50d5d1528072208a7830b",
+      "target": "463e7d2a62b1f15cc2daba34230297827e7c6757"
+    }
+  ],
+  "generated_at": "2026-06-02T17:22:25.665151+00:00",
+  "papers": [
+    {
+      "abstract": null,
+      "abstract_only": true,
+      "arxiv_id": null,
+      "authors": [
+        "Vimalkumar Jeyakumar",
+        "Mohammad Alizadeh",
+        "Changhoon Kim",
+        "David Mazi\u00e8res"
+      ],
+      "citation_count": 37,
+      "doi": "10.1145/2535771.2535780",
+      "embedding_score": null,
+      "expanded_for_crawl": false,
+      "graph_depth": 1,
+      "lexical_score": 0.19999999999999996,
+      "openalex_id": null,
+      "paper_id": "9c87b042b7bd943cc62ea450b6c6c63303859b34",
+      "parent_paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "parent_relation": "reference",
+      "pdf_candidates": [
+        {
+          "reason": "no_pdf_url_found",
+          "source": "resolver",
+          "status": "no_candidates",
+          "url": null
+        }
+      ],
+      "pdf_path": null,
+      "pdf_url": "",
+      "ranking_score": 0.19999999999999996,
+      "raw": {
+        "semantic_scholar": {
+          "abstract": null,
+          "authors": [
+            {
+              "authorId": "153204612",
+              "name": "Vimalkumar Jeyakumar"
+            },
+            {
+              "authorId": "79404966",
+              "name": "Mohammad Alizadeh"
+            },
+            {
+              "authorId": "33742176",
+              "name": "Changhoon Kim"
+            },
+            {
+              "authorId": "2506126",
+              "name": "David Mazi\u00e8res"
+            }
+          ],
+          "citationCount": 37,
+          "externalIds": {
+            "CorpusId": 535890,
+            "DBLP": "conf/hotnets/JeyakumarAKM13",
+            "DOI": "10.1145/2535771.2535780",
+            "MAG": "2142054669"
+          },
+          "openAccessPdf": {
+            "disclaimer": "Notice: The following paper fields have been elided by the publisher: {'abstract'}. Paper or abstract available at https://api.unpaywall.org/v2/10.1145/2535771.2535780?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.1145/2535771.2535780, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.",
+            "license": null,
+            "status": "CLOSED",
+            "url": ""
+          },
+          "paperId": "9c87b042b7bd943cc62ea450b6c6c63303859b34",
+          "title": "Tiny packet programs for low-latency network control and monitoring",
+          "url": "https://www.semanticscholar.org/paper/9c87b042b7bd943cc62ea450b6c6c63303859b34",
+          "venue": "ACM Workshop on Hot Topics in Networks",
+          "year": 2013
+        }
+      },
+      "relevance_score": 0.19999999999999996,
+      "resolution_source": null,
+      "selected_for_reading": true,
+      "source": "semantic_scholar",
+      "title": "Tiny packet programs for low-latency network control and monitoring",
+      "url": "https://www.semanticscholar.org/paper/9c87b042b7bd943cc62ea450b6c6c63303859b34",
+      "venue": "ACM Workshop on Hot Topics in Networks",
+      "year": 2013
+    },
+    {
+      "abstract": null,
+      "abstract_only": true,
+      "arxiv_id": null,
+      "authors": [
+        "Anirudh Sivaraman",
+        "Keith Winstein",
+        "Suvinay Subramanian",
+        "H. Balakrishnan"
+      ],
+      "citation_count": 84,
+      "doi": "10.1145/2535771.2535796",
+      "embedding_score": null,
+      "expanded_for_crawl": false,
+      "graph_depth": 1,
+      "lexical_score": 0.10540925533894598,
+      "openalex_id": null,
+      "paper_id": "03f907854a690c11686346e0523ac72206d78e50",
+      "parent_paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "parent_relation": "reference",
+      "pdf_candidates": [
+        {
+          "reason": "no_pdf_url_found",
+          "source": "resolver",
+          "status": "no_candidates",
+          "url": null
+        }
+      ],
+      "pdf_path": null,
+      "pdf_url": "",
+      "ranking_score": 0.10540925533894598,
+      "raw": {
+        "semantic_scholar": {
+          "abstract": null,
+          "authors": [
+            {
+              "authorId": "39118448",
+              "name": "Anirudh Sivaraman"
+            },
+            {
+              "authorId": "2203149",
+              "name": "Keith Winstein"
+            },
+            {
+              "authorId": "1929462",
+              "name": "Suvinay Subramanian"
+            },
+            {
+              "authorId": "145034082",
+              "name": "H. Balakrishnan"
+            }
+          ],
+          "citationCount": 84,
+          "externalIds": {
+            "CorpusId": 15603870,
+            "DBLP": "conf/hotnets/SivaramanWSB13",
+            "DOI": "10.1145/2535771.2535796",
+            "MAG": "2161191386"
+          },
+          "openAccessPdf": {
+            "disclaimer": "Notice: The following paper fields have been elided by the publisher: {'abstract'}. Paper or abstract available at https://api.unpaywall.org/v2/10.1145/2535771.2535796?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.1145/2535771.2535796, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.",
+            "license": null,
+            "status": "CLOSED",
+            "url": ""
+          },
+          "paperId": "03f907854a690c11686346e0523ac72206d78e50",
+          "title": "No silver bullet: extending SDN to the data plane",
+          "url": "https://www.semanticscholar.org/paper/03f907854a690c11686346e0523ac72206d78e50",
+          "venue": "ACM Workshop on Hot Topics in Networks",
+          "year": 2013
+        }
+      },
+      "relevance_score": 0.10540925533894598,
+      "resolution_source": null,
+      "selected_for_reading": true,
+      "source": "semantic_scholar",
+      "title": "No silver bullet: extending SDN to the data plane",
+      "url": "https://www.semanticscholar.org/paper/03f907854a690c11686346e0523ac72206d78e50",
+      "venue": "ACM Workshop on Hot Topics in Networks",
+      "year": 2013
+    },
+    {
+      "abstract": null,
+      "abstract_only": true,
+      "arxiv_id": null,
+      "authors": [
+        "E. Silvestre",
+        "Eduardo Freitas",
+        "A. T. O. Filho",
+        "P. R. D. do Carmo",
+        "D. Sadok"
+      ],
+      "citation_count": 0,
+      "doi": "10.1016/j.comcom.2026.108578",
+      "embedding_score": null,
+      "expanded_for_crawl": false,
+      "graph_depth": 1,
+      "lexical_score": 0.10540925533894598,
+      "openalex_id": null,
+      "paper_id": "73cb53296af74c1bc2adebb55e84b7fa3bd0546c",
+      "parent_paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "parent_relation": "citation",
+      "pdf_candidates": [
+        {
+          "reason": "no_pdf_url_found",
+          "source": "resolver",
+          "status": "no_candidates",
+          "url": null
+        }
+      ],
+      "pdf_path": null,
+      "pdf_url": "",
+      "ranking_score": 0.10540925533894598,
+      "raw": {
+        "semantic_scholar": {
+          "abstract": null,
+          "authors": [
+            {
+              "authorId": "2384293172",
+              "name": "E. Silvestre"
+            },
+            {
+              "authorId": "2146199172",
+              "name": "Eduardo Freitas"
+            },
+            {
+              "authorId": "1999163719",
+              "name": "A. T. O. Filho"
+            },
+            {
+              "authorId": "2140093857",
+              "name": "P. R. D. do Carmo"
+            },
+            {
+              "authorId": "7286889",
+              "name": "D. Sadok"
+            }
+          ],
+          "citationCount": 0,
+          "externalIds": {
+            "CorpusId": 288823683,
+            "DOI": "10.1016/j.comcom.2026.108578"
+          },
+          "openAccessPdf": {
+            "disclaimer": "Notice: Paper or abstract available at https://api.unpaywall.org/v2/10.1016/j.comcom.2026.108578?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.1016/j.comcom.2026.108578, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.",
+            "license": null,
+            "status": null,
+            "url": ""
+          },
+          "paperId": "73cb53296af74c1bc2adebb55e84b7fa3bd0546c",
+          "title": "A systematic review on experimental evaluation of L4S architecture",
+          "url": "https://www.semanticscholar.org/paper/73cb53296af74c1bc2adebb55e84b7fa3bd0546c",
+          "venue": "Computer Communications",
+          "year": 2026
+        }
+      },
+      "relevance_score": 0.10540925533894598,
+      "resolution_source": null,
+      "selected_for_reading": true,
+      "source": "semantic_scholar",
+      "title": "A systematic review on experimental evaluation of L4S architecture",
+      "url": "https://www.semanticscholar.org/paper/73cb53296af74c1bc2adebb55e84b7fa3bd0546c",
+      "venue": "Computer Communications",
+      "year": 2026
+    },
+    {
+      "abstract": "An SDN-like centralized control architecture is increasingly popular and has been widely explored in cyber-physical systems (CPS) such as manufacturing, internet-of-things, and autonomous vehicle systems for higher flexibility, programmability and scalability. However, no existing frameworks can offer domain-agnostic, easily extensible support for data-driven CPS applications. In this work, we design, implement, and open-source \\textit{SDNator}, the first framework to enable extensible, data-driven control in CPS. SDNator embraces an application- and data-driven design where applications function as data consumers and producers to collectively define the workflows of the controller. SDNator also incorporates two data store backends to support both event-driven and data-driven programming patterns. Benchmarks show that SDNator is highly scalable, and delivers comparable performance to Ryu, a widely used SDN controller. Moreover, we demonstrate the capabilities and usability of SDNator through our case studies of manufacturing and networking systems. By integrating applications from respective domains, we build different ``controllers''for different scenarios. Most notably, we leverage SDNator to implement the first digital-twin-equipped central controller for additive manufacturing fleets. We show through extensive and realistic simulations that SDNator-based scheduling can (1) significantly shorten production time and improve reliability in the presence of anomalies compared to decentralized approaches, and (2) flexibly adjust and optimize production plans upon urgent requests such as producing Personal Protective Equipment during the COVID-19 pandemic.",
+      "abstract_only": true,
+      "arxiv_id": "2605.23816",
+      "authors": [
+        "Yi-kuei Lin",
+        "Ruowan Zhang",
+        "Efe C. Balta",
+        "Jianbin Zhang",
+        "Xiao Zhu",
+        "Kira Barton",
+        "Dawn M. Tilbury",
+        "Z. Mao"
+      ],
+      "citation_count": 0,
+      "doi": null,
+      "embedding_score": null,
+      "expanded_for_crawl": false,
+      "graph_depth": 1,
+      "lexical_score": 0.10043491972850742,
+      "openalex_id": null,
+      "paper_id": "6712ab498dafdc0b076a0a6c52a0c9168fbbd48a",
+      "parent_paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "parent_relation": "citation",
+      "pdf_candidates": [
+        {
+          "reason": "no_pdf_url_found",
+          "source": "resolver",
+          "status": "no_candidates",
+          "url": null
+        }
+      ],
+      "pdf_path": null,
+      "pdf_url": "",
+      "ranking_score": 0.10043491972850742,
+      "raw": {
+        "semantic_scholar": {
+          "abstract": "An SDN-like centralized control architecture is increasingly popular and has been widely explored in cyber-physical systems (CPS) such as manufacturing, internet-of-things, and autonomous vehicle systems for higher flexibility, programmability and scalability. However, no existing frameworks can offer domain-agnostic, easily extensible support for data-driven CPS applications. In this work, we design, implement, and open-source \\textit{SDNator}, the first framework to enable extensible, data-driven control in CPS. SDNator embraces an application- and data-driven design where applications function as data consumers and producers to collectively define the workflows of the controller. SDNator also incorporates two data store backends to support both event-driven and data-driven programming patterns. Benchmarks show that SDNator is highly scalable, and delivers comparable performance to Ryu, a widely used SDN controller. Moreover, we demonstrate the capabilities and usability of SDNator through our case studies of manufacturing and networking systems. By integrating applications from respective domains, we build different ``controllers''for different scenarios. Most notably, we leverage SDNator to implement the first digital-twin-equipped central controller for additive manufacturing fleets. We show through extensive and realistic simulations that SDNator-based scheduling can (1) significantly shorten production time and improve reliability in the presence of anomalies compared to decentralized approaches, and (2) flexibly adjust and optimize production plans upon urgent requests such as producing Personal Protective Equipment during the COVID-19 pandemic.",
+          "authors": [
+            {
+              "authorId": "2249283063",
+              "name": "Yi-kuei Lin"
+            },
+            {
+              "authorId": "2406780704",
+              "name": "Ruowan Zhang"
+            },
+            {
+              "authorId": "34655428",
+              "name": "Efe C. Balta"
+            },
+            {
+              "authorId": "2262395682",
+              "name": "Jianbin Zhang"
+            },
+            {
+              "authorId": "48386999",
+              "name": "Xiao Zhu"
+            },
+            {
+              "authorId": "2341950107",
+              "name": "Kira Barton"
+            },
+            {
+              "authorId": "2248804064",
+              "name": "Dawn M. Tilbury"
+            },
+            {
+              "authorId": "2314396443",
+              "name": "Z. Mao"
+            }
+          ],
+          "citationCount": 0,
+          "externalIds": {
+            "ArXiv": "2605.23816",
+            "CorpusId": 288649756
+          },
+          "openAccessPdf": {
+            "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2605.23816, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.",
+            "license": null,
+            "status": null,
+            "url": ""
+          },
+          "paperId": "6712ab498dafdc0b076a0a6c52a0c9168fbbd48a",
+          "title": "SDNator is Not Another SDN Controller: Enabling Extensible Data-Driven Control in Cyber-Physical Systems",
+          "url": "https://www.semanticscholar.org/paper/6712ab498dafdc0b076a0a6c52a0c9168fbbd48a",
+          "venue": "",
+          "year": 2026
+        }
+      },
+      "relevance_score": 0.10043491972850742,
+      "resolution_source": null,
+      "selected_for_reading": true,
+      "source": "semantic_scholar",
+      "title": "SDNator is Not Another SDN Controller: Enabling Extensible Data-Driven Control in Cyber-Physical Systems",
+      "url": "https://www.semanticscholar.org/paper/6712ab498dafdc0b076a0a6c52a0c9168fbbd48a",
+      "venue": "",
+      "year": 2026
+    },
+    {
+      "abstract": "P4 is a high-level language for programming protocol-independent packet processors. P4 works in conjunction with SDN control protocols like OpenFlow. In its current form, OpenFlow explicitly specifies protocol headers on which it operates. This set has grown from 12 to 41 fields in a few years, increasing the complexity of the specification while still not providing the flexibility to add new headers. In this paper we propose P4 as a strawman proposal for how OpenFlow should evolve in the future. We have three goals: (1) Reconfigurability in the field: Programmers should be able to change the way switches process packets once they are deployed. (2) Protocol independence: Switches should not be tied to any specific network protocols. (3) Target independence: Programmers should be able to describe packet-processing functionality independently of the specifics of the underlying hardware. As an example, we describe how to use P4 to configure a switch to add a new hierarchical label.",
+      "abstract_only": true,
+      "arxiv_id": "1312.1719",
+      "authors": [
+        "P. Bosshart",
+        "Dan Daly",
+        "Glen Gibb",
+        "M. Izzard",
+        "N. McKeown",
+        "J. Rexford",
+        "Cole Schlesinger",
+        "Daniel E. Talayco",
+        "Amin Vahdat",
+        "G. Varghese",
+        "D. Walker"
+      ],
+      "citation_count": 2985,
+      "doi": "10.1145/2656877.2656890",
+      "embedding_score": null,
+      "expanded_for_crawl": false,
+      "graph_depth": 0,
+      "lexical_score": 0.07589709258986453,
+      "openalex_id": null,
+      "paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "parent_paper_id": null,
+      "parent_relation": null,
+      "pdf_candidates": [],
+      "pdf_path": null,
+      "pdf_url": "",
+      "ranking_score": 0.07589709258986453,
+      "raw": {
+        "semantic_scholar": {
+          "abstract": "P4 is a high-level language for programming protocol-independent packet processors. P4 works in conjunction with SDN control protocols like OpenFlow. In its current form, OpenFlow explicitly specifies protocol headers on which it operates. This set has grown from 12 to 41 fields in a few years, increasing the complexity of the specification while still not providing the flexibility to add new headers. In this paper we propose P4 as a strawman proposal for how OpenFlow should evolve in the future. We have three goals: (1) Reconfigurability in the field: Programmers should be able to change the way switches process packets once they are deployed. (2) Protocol independence: Switches should not be tied to any specific network protocols. (3) Target independence: Programmers should be able to describe packet-processing functionality independently of the specifics of the underlying hardware. As an example, we describe how to use P4 to configure a switch to add a new hierarchical label.",
+          "authors": [
+            {
+              "authorId": "19463746",
+              "name": "P. Bosshart"
+            },
+            {
+              "authorId": "40634268",
+              "name": "Dan Daly"
+            },
+            {
+              "authorId": "1686792",
+              "name": "Glen Gibb"
+            },
+            {
+              "authorId": "40315108",
+              "name": "M. Izzard"
+            },
+            {
+              "authorId": "1708241",
+              "name": "N. McKeown"
+            },
+            {
+              "authorId": "1730356",
+              "name": "J. Rexford"
+            },
+            {
+              "authorId": "1859909",
+              "name": "Cole Schlesinger"
+            },
+            {
+              "authorId": "1900660",
+              "name": "Daniel E. Talayco"
+            },
+            {
+              "authorId": "145778835",
+              "name": "Amin Vahdat"
+            },
+            {
+              "authorId": "144723049",
+              "name": "G. Varghese"
+            },
+            {
+              "authorId": "145242702",
+              "name": "D. Walker"
+            }
+          ],
+          "citationCount": 2985,
+          "externalIds": {
+            "ArXiv": "1312.1719",
+            "CorpusId": 9077729,
+            "DBLP": "journals/ccr/BosshartDGIMRSTVVW14",
+            "DOI": "10.1145/2656877.2656890",
+            "MAG": "2949902779"
+          },
+          "isOpenAccess": false,
+          "openAccessPdf": {
+            "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/1312.1719, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.",
+            "license": null,
+            "status": "CLOSED",
+            "url": ""
+          },
+          "paperId": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+          "referenceCount": 25,
+          "title": "P4: programming protocol-independent packet processors",
+          "url": "https://www.semanticscholar.org/paper/463e7d2a62b1f15cc2daba34230297827e7c6757",
+          "venue": "CCRV",
+          "year": 2013
+        }
+      },
+      "relevance_score": 0.07589709258986453,
+      "resolution_source": null,
+      "selected_for_reading": false,
+      "source": "semantic_scholar",
+      "title": "P4: programming protocol-independent packet processors",
+      "url": "https://www.semanticscholar.org/paper/463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "venue": "CCRV",
+      "year": 2013
+    },
+    {
+      "abstract": "In-Network Collective (INC) acceleration holds immense potential for optimizing AI training and inference; however, its cross-layer nature has historically hindered investment and adoption within the open Ethernet ecosystem. To bridge this gap, we propose EPIC (Ethernet Polymorphic In-network Collective), an INC protocol specification and reference system built on the principle of\"Unified Abstraction, Polymorphic Realization.\"EPIC introduces an abstraction compatible with standard Ethernet that aligns functional boundaries with participant roles, while offering polymorphic realizations tailored to varying hardware capabilities. We address three fundamental challenges: first, we employ a modular design that enables an evolutionary path from simple to complex implementations, allowing vendors to iterate their hardware incrementally; second, we apply formal verification methodologies to prove the correctness of all proposed polymorphic modes; and third, we develop a unified resource management model versatile enough for diverse INC scenarios. Extensive validation -- spanning model checking, packet/flow simulations, VM emulation, Tofino Testbed, and FPGA/RTL verification -- confirms EPIC's correctness, performance gain, and feasibility.",
+      "abstract_only": true,
+      "arxiv_id": "2605.18683",
+      "authors": [
+        "Yitao Yuan",
+        "Jianglong Nie",
+        "T. Bai",
+        "Ruizhe Zhou",
+        "Siyuan Cao",
+        "Xujie Fan",
+        "Yuchen Xu",
+        "Junkai Chen",
+        "Chenqi Zhao",
+        "Nengyuan Zhang",
+        "Shaoke Fang",
+        "Jiangyuan Chen",
+        "Yuanfeng Chen",
+        "Jiaqi Sun",
+        "Zhangyuan Wang",
+        "Xiaohu Xu",
+        "Yuchao Zhang",
+        "Yang Liu",
+        "Xiangrui Yang",
+        "Jing Lin",
+        "Xiaohe Hu",
+        "Yang Li",
+        "Chao Jiang",
+        "Limin Xiao",
+        "Weifeng Zhang",
+        "Junjie Wang",
+        "Wei Cheng",
+        "Yazhu Lan",
+        "Jianbo Dong",
+        "Binzhang Fu",
+        "Wenfei Wu"
+      ],
+      "citation_count": 0,
+      "doi": null,
+      "embedding_score": null,
+      "expanded_for_crawl": false,
+      "graph_depth": 1,
+      "lexical_score": 0.06704015231539909,
+      "openalex_id": null,
+      "paper_id": "c45df6d02b60821d2de50d5d1528072208a7830b",
+      "parent_paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "parent_relation": "citation",
+      "pdf_candidates": [],
+      "pdf_path": null,
+      "pdf_url": "",
+      "ranking_score": 0.06704015231539909,
+      "raw": {
+        "semantic_scholar": {
+          "abstract": "In-Network Collective (INC) acceleration holds immense potential for optimizing AI training and inference; however, its cross-layer nature has historically hindered investment and adoption within the open Ethernet ecosystem. To bridge this gap, we propose EPIC (Ethernet Polymorphic In-network Collective), an INC protocol specification and reference system built on the principle of\"Unified Abstraction, Polymorphic Realization.\"EPIC introduces an abstraction compatible with standard Ethernet that aligns functional boundaries with participant roles, while offering polymorphic realizations tailored to varying hardware capabilities. We address three fundamental challenges: first, we employ a modular design that enables an evolutionary path from simple to complex implementations, allowing vendors to iterate their hardware incrementally; second, we apply formal verification methodologies to prove the correctness of all proposed polymorphic modes; and third, we develop a unified resource management model versatile enough for diverse INC scenarios. Extensive validation -- spanning model checking, packet/flow simulations, VM emulation, Tofino Testbed, and FPGA/RTL verification -- confirms EPIC's correctness, performance gain, and feasibility.",
+          "authors": [
+            {
+              "authorId": "2382506155",
+              "name": "Yitao Yuan"
+            },
+            {
+              "authorId": "2384780555",
+              "name": "Jianglong Nie"
+            },
+            {
+              "authorId": "2266079692",
+              "name": "T. Bai"
+            },
+            {
+              "authorId": "2276404102",
+              "name": "Ruizhe Zhou"
+            },
+            {
+              "authorId": "2072594926",
+              "name": "Siyuan Cao"
+            },
+            {
+              "authorId": "2438696847",
+              "name": "Xujie Fan"
+            },
+            {
+              "authorId": "2386873389",
+              "name": "Yuchen Xu"
+            },
+            {
+              "authorId": "2293350098",
+              "name": "Junkai Chen"
+            },
+            {
+              "authorId": "2380012365",
+              "name": "Chenqi Zhao"
+            },
+            {
+              "authorId": "2386551775",
+              "name": "Nengyuan Zhang"
+            },
+            {
+              "authorId": "2150092670",
+              "name": "Shaoke Fang"
+            },
+            {
+              "authorId": "2225556585",
+              "name": "Jiangyuan Chen"
+            },
+            {
+              "authorId": "2349725855",
+              "name": "Yuanfeng Chen"
+            },
+            {
+              "authorId": "2326810145",
+              "name": "Jiaqi Sun"
+            },
+            {
+              "authorId": "2108405569",
+              "name": "Zhangyuan Wang"
+            },
+            {
+              "authorId": "48670310",
+              "name": "Xiaohu Xu"
+            },
+            {
+              "authorId": "2384781770",
+              "name": "Yuchao Zhang"
+            },
+            {
+              "authorId": "2278883490",
+              "name": "Yang Liu"
+            },
+            {
+              "authorId": "2256585268",
+              "name": "Xiangrui Yang"
+            },
+            {
+              "authorId": "2282294292",
+              "name": "Jing Lin"
+            },
+            {
+              "authorId": "2344034011",
+              "name": "Xiaohe Hu"
+            },
+            {
+              "authorId": "2274794488",
+              "name": "Yang Li"
+            },
+            {
+              "authorId": "2381067841",
+              "name": "Chao Jiang"
+            },
+            {
+              "authorId": "2374376363",
+              "name": "Limin Xiao"
+            },
+            {
+              "authorId": "2380788302",
+              "name": "Weifeng Zhang"
+            },
+            {
+              "authorId": "2372670558",
+              "name": "Junjie Wang"
+            },
+            {
+              "authorId": "2249879747",
+              "name": "Wei Cheng"
+            },
+            {
+              "authorId": "37510265",
+              "name": "Yazhu Lan"
+            },
+            {
+              "authorId": "2248091132",
+              "name": "Jianbo Dong"
+            },
+            {
+              "authorId": "2305486640",
+              "name": "Binzhang Fu"
+            },
+            {
+              "authorId": "2288559729",
+              "name": "Wenfei Wu"
+            }
+          ],
+          "citationCount": 0,
+          "externalIds": {
+            "ArXiv": "2605.18683",
+            "CorpusId": 288651318
+          },
+          "openAccessPdf": {
+            "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2605.18683, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.",
+            "license": null,
+            "status": null,
+            "url": ""
+          },
+          "paperId": "c45df6d02b60821d2de50d5d1528072208a7830b",
+          "title": "EPIC: Abstraction and Polymorphism of In-Network Collectives on Ethernet",
+          "url": "https://www.semanticscholar.org/paper/c45df6d02b60821d2de50d5d1528072208a7830b",
+          "venue": "",
+          "year": 2026
+        }
+      },
+      "relevance_score": 0.06704015231539909,
+      "resolution_source": null,
+      "selected_for_reading": false,
+      "source": "semantic_scholar",
+      "title": "EPIC: Abstraction and Polymorphism of In-Network Collectives on Ethernet",
+      "url": "https://www.semanticscholar.org/paper/c45df6d02b60821d2de50d5d1528072208a7830b",
+      "venue": "",
+      "year": 2026
+    },
+    {
+      "abstract": null,
+      "abstract_only": true,
+      "arxiv_id": null,
+      "authors": [
+        "Dong Zhou",
+        "Bin Fan",
+        "Hyeontaek Lim",
+        "M. Kaminsky",
+        "D. Andersen"
+      ],
+      "citation_count": 155,
+      "doi": "10.1145/2535372.2535379",
+      "embedding_score": null,
+      "expanded_for_crawl": false,
+      "graph_depth": 1,
+      "lexical_score": 0.0,
+      "openalex_id": null,
+      "paper_id": "77aa217da1e3a078f39d9a84f8627cf1ee0d3a22",
+      "parent_paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "parent_relation": "reference",
+      "pdf_candidates": [],
+      "pdf_path": null,
+      "pdf_url": "https://dl.acm.org/doi/pdf/10.1145/2535372.2535379",
+      "ranking_score": 0.0,
+      "raw": {
+        "semantic_scholar": {
+          "abstract": null,
+          "authors": [
+            {
+              "authorId": "2116323057",
+              "name": "Dong Zhou"
+            },
+            {
+              "authorId": "2052131342",
+              "name": "Bin Fan"
+            },
+            {
+              "authorId": "8939217",
+              "name": "Hyeontaek Lim"
+            },
+            {
+              "authorId": "1762920",
+              "name": "M. Kaminsky"
+            },
+            {
+              "authorId": "34752743",
+              "name": "D. Andersen"
+            }
+          ],
+          "citationCount": 155,
+          "externalIds": {
+            "CorpusId": 7441592,
+            "DBLP": "conf/conext/ZhouFLKA13",
+            "DOI": "10.1145/2535372.2535379",
+            "MAG": "1989728020"
+          },
+          "openAccessPdf": {
+            "disclaimer": "Notice: The following paper fields have been elided by the publisher: {'abstract'}. Paper or abstract available at https://api.unpaywall.org/v2/10.1145/2535372.2535379?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.1145/2535372.2535379, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.",
+            "license": null,
+            "status": "BRONZE",
+            "url": "https://dl.acm.org/doi/pdf/10.1145/2535372.2535379"
+          },
+          "paperId": "77aa217da1e3a078f39d9a84f8627cf1ee0d3a22",
+          "title": "Scalable, high performance ethernet forwarding with CuckooSwitch",
+          "url": "https://www.semanticscholar.org/paper/77aa217da1e3a078f39d9a84f8627cf1ee0d3a22",
+          "venue": "Conference on Emerging Network Experiment and Technology",
+          "year": 2013
+        }
+      },
+      "relevance_score": 0.0,
+      "resolution_source": null,
+      "selected_for_reading": false,
+      "source": "semantic_scholar",
+      "title": "Scalable, high performance ethernet forwarding with CuckooSwitch",
+      "url": "https://www.semanticscholar.org/paper/77aa217da1e3a078f39d9a84f8627cf1ee0d3a22",
+      "venue": "Conference on Emerging Network Experiment and Technology",
+      "year": 2013
+    },
+    {
+      "abstract": null,
+      "abstract_only": true,
+      "arxiv_id": null,
+      "authors": [
+        "Minlan Yu",
+        "Andreas Wundsam",
+        "M. Raju"
+      ],
+      "citation_count": 41,
+      "doi": "10.1145/2602204.2602209",
+      "embedding_score": null,
+      "expanded_for_crawl": false,
+      "graph_depth": 1,
+      "lexical_score": 0.0,
+      "openalex_id": null,
+      "paper_id": "03a7e38db081d87257e3db4c936362c30ab0d7b0",
+      "parent_paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "parent_relation": "reference",
+      "pdf_candidates": [],
+      "pdf_path": null,
+      "pdf_url": "",
+      "ranking_score": 0.0,
+      "raw": {
+        "semantic_scholar": {
+          "abstract": null,
+          "authors": [
+            {
+              "authorId": "2288644920",
+              "name": "Minlan Yu"
+            },
+            {
+              "authorId": "2506790",
+              "name": "Andreas Wundsam"
+            },
+            {
+              "authorId": "143857519",
+              "name": "M. Raju"
+            }
+          ],
+          "citationCount": 41,
+          "externalIds": {
+            "CorpusId": 5625404,
+            "DBLP": "journals/ccr/YuWR14",
+            "DOI": "10.1145/2602204.2602209",
+            "MAG": "2063470101"
+          },
+          "openAccessPdf": {
+            "disclaimer": "Notice: The following paper fields have been elided by the publisher: {'abstract'}. Paper or abstract available at https://api.unpaywall.org/v2/10.1145/2602204.2602209?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.1145/2602204.2602209, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.",
+            "license": null,
+            "status": "CLOSED",
+            "url": ""
+          },
+          "paperId": "03a7e38db081d87257e3db4c936362c30ab0d7b0",
+          "title": "NOSIX: a lightweight portability layer for the SDN OS",
+          "url": "https://www.semanticscholar.org/paper/03a7e38db081d87257e3db4c936362c30ab0d7b0",
+          "venue": "CCRV",
+          "year": 2014
+        }
+      },
+      "relevance_score": 0.0,
+      "resolution_source": null,
+      "selected_for_reading": false,
+      "source": "semantic_scholar",
+      "title": "NOSIX: a lightweight portability layer for the SDN OS",
+      "url": "https://www.semanticscholar.org/paper/03a7e38db081d87257e3db4c936362c30ab0d7b0",
+      "venue": "CCRV",
+      "year": 2014
+    },
+    {
+      "abstract": null,
+      "abstract_only": true,
+      "arxiv_id": null,
+      "authors": [
+        "Robert Ko\u0142akowski",
+        "S. Kukli\u0144ski",
+        "Lechos\u0142aw Tomaszewski"
+      ],
+      "citation_count": 0,
+      "doi": "10.1007/s10922-026-10087-w",
+      "embedding_score": null,
+      "expanded_for_crawl": false,
+      "graph_depth": 1,
+      "lexical_score": 0.0,
+      "openalex_id": null,
+      "paper_id": "53e3f6eab8907a12baba620e3e942951aa5dc3df",
+      "parent_paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "parent_relation": "citation",
+      "pdf_candidates": [],
+      "pdf_path": null,
+      "pdf_url": "",
+      "ranking_score": 0.0,
+      "raw": {
+        "semantic_scholar": {
+          "abstract": null,
+          "authors": [
+            {
+              "authorId": "1725441935",
+              "name": "Robert Ko\u0142akowski"
+            },
+            {
+              "authorId": "2227961",
+              "name": "S. Kukli\u0144ski"
+            },
+            {
+              "authorId": "51056365",
+              "name": "Lechos\u0142aw Tomaszewski"
+            }
+          ],
+          "citationCount": 0,
+          "externalIds": {
+            "CorpusId": 288643814,
+            "DOI": "10.1007/s10922-026-10087-w"
+          },
+          "openAccessPdf": {
+            "disclaimer": "Notice: The following paper fields have been elided by the publisher: {'abstract'}. Paper or abstract available at https://api.unpaywall.org/v2/10.1007/s10922-026-10087-w?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.1007/s10922-026-10087-w, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.",
+            "license": null,
+            "status": null,
+            "url": ""
+          },
+          "paperId": "53e3f6eab8907a12baba620e3e942951aa5dc3df",
+          "title": "Evaluating Scalability of Hierarchical Multi-controller SDN: A Holistic Approach",
+          "url": "https://www.semanticscholar.org/paper/53e3f6eab8907a12baba620e3e942951aa5dc3df",
+          "venue": "Journal of Network and Systems Management",
+          "year": 2026
+        }
+      },
+      "relevance_score": 0.0,
+      "resolution_source": null,
+      "selected_for_reading": false,
+      "source": "semantic_scholar",
+      "title": "Evaluating Scalability of Hierarchical Multi-controller SDN: A Holistic Approach",
+      "url": "https://www.semanticscholar.org/paper/53e3f6eab8907a12baba620e3e942951aa5dc3df",
+      "venue": "Journal of Network and Systems Management",
+      "year": 2026
+    }
+  ],
+  "seed": {
+    "abstract": "P4 is a high-level language for programming protocol-independent packet processors. P4 works in conjunction with SDN control protocols like OpenFlow. In its current form, OpenFlow explicitly specifies protocol headers on which it operates. This set has grown from 12 to 41 fields in a few years, increasing the complexity of the specification while still not providing the flexibility to add new headers. In this paper we propose P4 as a strawman proposal for how OpenFlow should evolve in the future. We have three goals: (1) Reconfigurability in the field: Programmers should be able to change the way switches process packets once they are deployed. (2) Protocol independence: Switches should not be tied to any specific network protocols. (3) Target independence: Programmers should be able to describe packet-processing functionality independently of the specifics of the underlying hardware. As an example, we describe how to use P4 to configure a switch to add a new hierarchical label.",
+    "abstract_only": true,
+    "arxiv_id": "1312.1719",
+    "authors": [
+      "P. Bosshart",
+      "Dan Daly",
+      "Glen Gibb",
+      "M. Izzard",
+      "N. McKeown",
+      "J. Rexford",
+      "Cole Schlesinger",
+      "Daniel E. Talayco",
+      "Amin Vahdat",
+      "G. Varghese",
+      "D. Walker"
+    ],
+    "citation_count": 2985,
+    "doi": "10.1145/2656877.2656890",
+    "embedding_score": null,
+    "expanded_for_crawl": false,
+    "graph_depth": 0,
+    "lexical_score": 0.07589709258986453,
+    "openalex_id": null,
+    "paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+    "parent_paper_id": null,
+    "parent_relation": null,
+    "pdf_candidates": [],
+    "pdf_path": null,
+    "pdf_url": "",
+    "ranking_score": 0.07589709258986453,
+    "raw": {
+      "semantic_scholar": {
+        "abstract": "P4 is a high-level language for programming protocol-independent packet processors. P4 works in conjunction with SDN control protocols like OpenFlow. In its current form, OpenFlow explicitly specifies protocol headers on which it operates. This set has grown from 12 to 41 fields in a few years, increasing the complexity of the specification while still not providing the flexibility to add new headers. In this paper we propose P4 as a strawman proposal for how OpenFlow should evolve in the future. We have three goals: (1) Reconfigurability in the field: Programmers should be able to change the way switches process packets once they are deployed. (2) Protocol independence: Switches should not be tied to any specific network protocols. (3) Target independence: Programmers should be able to describe packet-processing functionality independently of the specifics of the underlying hardware. As an example, we describe how to use P4 to configure a switch to add a new hierarchical label.",
+        "authors": [
+          {
+            "authorId": "19463746",
+            "name": "P. Bosshart"
+          },
+          {
+            "authorId": "40634268",
+            "name": "Dan Daly"
+          },
+          {
+            "authorId": "1686792",
+            "name": "Glen Gibb"
+          },
+          {
+            "authorId": "40315108",
+            "name": "M. Izzard"
+          },
+          {
+            "authorId": "1708241",
+            "name": "N. McKeown"
+          },
+          {
+            "authorId": "1730356",
+            "name": "J. Rexford"
+          },
+          {
+            "authorId": "1859909",
+            "name": "Cole Schlesinger"
+          },
+          {
+            "authorId": "1900660",
+            "name": "Daniel E. Talayco"
+          },
+          {
+            "authorId": "145778835",
+            "name": "Amin Vahdat"
+          },
+          {
+            "authorId": "144723049",
+            "name": "G. Varghese"
+          },
+          {
+            "authorId": "145242702",
+            "name": "D. Walker"
+          }
+        ],
+        "citationCount": 2985,
+        "externalIds": {
+          "ArXiv": "1312.1719",
+          "CorpusId": 9077729,
+          "DBLP": "journals/ccr/BosshartDGIMRSTVVW14",
+          "DOI": "10.1145/2656877.2656890",
+          "MAG": "2949902779"
+        },
+        "isOpenAccess": false,
+        "openAccessPdf": {
+          "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/1312.1719, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.",
+          "license": null,
+          "status": "CLOSED",
+          "url": ""
+        },
+        "paperId": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+        "referenceCount": 25,
+        "title": "P4: programming protocol-independent packet processors",
+        "url": "https://www.semanticscholar.org/paper/463e7d2a62b1f15cc2daba34230297827e7c6757",
+        "venue": "CCRV",
+        "year": 2013
+      }
+    },
+    "relevance_score": 0.07589709258986453,
+    "resolution_source": null,
+    "selected_for_reading": false,
+    "source": "semantic_scholar",
+    "title": "P4: programming protocol-independent packet processors",
+    "url": "https://www.semanticscholar.org/paper/463e7d2a62b1f15cc2daba34230297827e7c6757",
+    "venue": "CCRV",
+    "year": 2013
+  },
+  "selected_paper_ids": [
+    "9c87b042b7bd943cc62ea450b6c6c63303859b34",
+    "03f907854a690c11686346e0523ac72206d78e50",
+    "73cb53296af74c1bc2adebb55e84b7fa3bd0546c",
+    "6712ab498dafdc0b076a0a6c52a0c9168fbbd48a"
+  ],
+  "warnings": []
+}

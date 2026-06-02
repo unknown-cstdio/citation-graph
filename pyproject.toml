@@ -1,0 +1,28 @@
+[project]
+name = "citation-graph-deep-research"
+version = "0.1.0"
+description = "Sidecar citation-graph crawler and PaperQA2 handoff pipeline."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "requests>=2.31.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+]
+
+[project.scripts]
+citation-closure = "citation_deep_research.cli:main"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[tool.setuptools.packages.find]
+include = ["citation_deep_research*"]
+exclude = ["runs*", "tests*"]

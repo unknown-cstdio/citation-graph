@@ -1,0 +1,282 @@
+{
+  "edges": [
+    {
+      "relation": "reference",
+      "source": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "target": "03a7e38db081d87257e3db4c936362c30ab0d7b0"
+    },
+    {
+      "relation": "citation",
+      "source": "73cb53296af74c1bc2adebb55e84b7fa3bd0546c",
+      "target": "463e7d2a62b1f15cc2daba34230297827e7c6757"
+    },
+    {
+      "relation": "reference",
+      "source": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "target": "77aa217da1e3a078f39d9a84f8627cf1ee0d3a22"
+    },
+    {
+      "relation": "citation",
+      "source": "53e3f6eab8907a12baba620e3e942951aa5dc3df",
+      "target": "463e7d2a62b1f15cc2daba34230297827e7c6757"
+    },
+    {
+      "relation": "reference",
+      "source": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "target": "9c87b042b7bd943cc62ea450b6c6c63303859b34"
+    },
+    {
+      "relation": "citation",
+      "source": "6712ab498dafdc0b076a0a6c52a0c9168fbbd48a",
+      "target": "463e7d2a62b1f15cc2daba34230297827e7c6757"
+    },
+    {
+      "relation": "reference",
+      "source": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "target": "03f907854a690c11686346e0523ac72206d78e50"
+    },
+    {
+      "relation": "citation",
+      "source": "c45df6d02b60821d2de50d5d1528072208a7830b",
+      "target": "463e7d2a62b1f15cc2daba34230297827e7c6757"
+    }
+  ],
+  "nodes": [
+    {
+      "abstract_only": true,
+      "citation_count": 37,
+      "doi": "10.1145/2535771.2535780",
+      "embedding_score": null,
+      "expanded_for_crawl": false,
+      "graph_depth": 1,
+      "id": "9c87b042b7bd943cc62ea450b6c6c63303859b34",
+      "lexical_score": 0.19999999999999996,
+      "paper_id": "9c87b042b7bd943cc62ea450b6c6c63303859b34",
+      "parent_paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "parent_relation": "reference",
+      "pdf_candidates": [
+        {
+          "reason": "no_pdf_url_found",
+          "source": "resolver",
+          "status": "no_candidates",
+          "url": null
+        }
+      ],
+      "pdf_path": null,
+      "pdf_url": "",
+      "ranking_score": 0.19999999999999996,
+      "relevance_score": 0.19999999999999996,
+      "resolution_source": null,
+      "selected_for_reading": true,
+      "title": "Tiny packet programs for low-latency network control and monitoring",
+      "venue": "ACM Workshop on Hot Topics in Networks",
+      "year": 2013
+    },
+    {
+      "abstract_only": true,
+      "citation_count": 84,
+      "doi": "10.1145/2535771.2535796",
+      "embedding_score": null,
+      "expanded_for_crawl": false,
+      "graph_depth": 1,
+      "id": "03f907854a690c11686346e0523ac72206d78e50",
+      "lexical_score": 0.10540925533894598,
+      "paper_id": "03f907854a690c11686346e0523ac72206d78e50",
+      "parent_paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "parent_relation": "reference",
+      "pdf_candidates": [
+        {
+          "reason": "no_pdf_url_found",
+          "source": "resolver",
+          "status": "no_candidates",
+          "url": null
+        }
+      ],
+      "pdf_path": null,
+      "pdf_url": "",
+      "ranking_score": 0.10540925533894598,
+      "relevance_score": 0.10540925533894598,
+      "resolution_source": null,
+      "selected_for_reading": true,
+      "title": "No silver bullet: extending SDN to the data plane",
+      "venue": "ACM Workshop on Hot Topics in Networks",
+      "year": 2013
+    },
+    {
+      "abstract_only": true,
+      "citation_count": 0,
+      "doi": "10.1016/j.comcom.2026.108578",
+      "embedding_score": null,
+      "expanded_for_crawl": false,
+      "graph_depth": 1,
+      "id": "73cb53296af74c1bc2adebb55e84b7fa3bd0546c",
+      "lexical_score": 0.10540925533894598,
+      "paper_id": "73cb53296af74c1bc2adebb55e84b7fa3bd0546c",
+      "parent_paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "parent_relation": "citation",
+      "pdf_candidates": [
+        {
+          "reason": "no_pdf_url_found",
+          "source": "resolver",
+          "status": "no_candidates",
+          "url": null
+        }
+      ],
+      "pdf_path": null,
+      "pdf_url": "",
+      "ranking_score": 0.10540925533894598,
+      "relevance_score": 0.10540925533894598,
+      "resolution_source": null,
+      "selected_for_reading": true,
+      "title": "A systematic review on experimental evaluation of L4S architecture",
+      "venue": "Computer Communications",
+      "year": 2026
+    },
+    {
+      "abstract_only": true,
+      "citation_count": 0,
+      "doi": null,
+      "embedding_score": null,
+      "expanded_for_crawl": false,
+      "graph_depth": 1,
+      "id": "6712ab498dafdc0b076a0a6c52a0c9168fbbd48a",
+      "lexical_score": 0.10043491972850742,
+      "paper_id": "6712ab498dafdc0b076a0a6c52a0c9168fbbd48a",
+      "parent_paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "parent_relation": "citation",
+      "pdf_candidates": [
+        {
+          "reason": "no_pdf_url_found",
+          "source": "resolver",
+          "status": "no_candidates",
+          "url": null
+        }
+      ],
+      "pdf_path": null,
+      "pdf_url": "",
+      "ranking_score": 0.10043491972850742,
+      "relevance_score": 0.10043491972850742,
+      "resolution_source": null,
+      "selected_for_reading": true,
+      "title": "SDNator is Not Another SDN Controller: Enabling Extensible Data-Driven Control in Cyber-Physical Systems",
+      "venue": "",
+      "year": 2026
+    },
+    {
+      "abstract_only": true,
+      "citation_count": 2985,
+      "doi": "10.1145/2656877.2656890",
+      "embedding_score": null,
+      "expanded_for_crawl": false,
+      "graph_depth": 0,
+      "id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "lexical_score": 0.07589709258986453,
+      "paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "parent_paper_id": null,
+      "parent_relation": null,
+      "pdf_candidates": [],
+      "pdf_path": null,
+      "pdf_url": "",
+      "ranking_score": 0.07589709258986453,
+      "relevance_score": 0.07589709258986453,
+      "resolution_source": null,
+      "selected_for_reading": false,
+      "title": "P4: programming protocol-independent packet processors",
+      "venue": "CCRV",
+      "year": 2013
+    },
+    {
+      "abstract_only": true,
+      "citation_count": 0,
+      "doi": null,
+      "embedding_score": null,
+      "expanded_for_crawl": false,
+      "graph_depth": 1,
+      "id": "c45df6d02b60821d2de50d5d1528072208a7830b",
+      "lexical_score": 0.06704015231539909,
+      "paper_id": "c45df6d02b60821d2de50d5d1528072208a7830b",
+      "parent_paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "parent_relation": "citation",
+      "pdf_candidates": [],
+      "pdf_path": null,
+      "pdf_url": "",
+      "ranking_score": 0.06704015231539909,
+      "relevance_score": 0.06704015231539909,
+      "resolution_source": null,
+      "selected_for_reading": false,
+      "title": "EPIC: Abstraction and Polymorphism of In-Network Collectives on Ethernet",
+      "venue": "",
+      "year": 2026
+    },
+    {
+      "abstract_only": true,
+      "citation_count": 155,
+      "doi": "10.1145/2535372.2535379",
+      "embedding_score": null,
+      "expanded_for_crawl": false,
+      "graph_depth": 1,
+      "id": "77aa217da1e3a078f39d9a84f8627cf1ee0d3a22",
+      "lexical_score": 0.0,
+      "paper_id": "77aa217da1e3a078f39d9a84f8627cf1ee0d3a22",
+      "parent_paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "parent_relation": "reference",
+      "pdf_candidates": [],
+      "pdf_path": null,
+      "pdf_url": "https://dl.acm.org/doi/pdf/10.1145/2535372.2535379",
+      "ranking_score": 0.0,
+      "relevance_score": 0.0,
+      "resolution_source": null,
+      "selected_for_reading": false,
+      "title": "Scalable, high performance ethernet forwarding with CuckooSwitch",
+      "venue": "Conference on Emerging Network Experiment and Technology",
+      "year": 2013
+    },
+    {
+      "abstract_only": true,
+      "citation_count": 41,
+      "doi": "10.1145/2602204.2602209",
+      "embedding_score": null,
+      "expanded_for_crawl": false,
+      "graph_depth": 1,
+      "id": "03a7e38db081d87257e3db4c936362c30ab0d7b0",
+      "lexical_score": 0.0,
+      "paper_id": "03a7e38db081d87257e3db4c936362c30ab0d7b0",
+      "parent_paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "parent_relation": "reference",
+      "pdf_candidates": [],
+      "pdf_path": null,
+      "pdf_url": "",
+      "ranking_score": 0.0,
+      "relevance_score": 0.0,
+      "resolution_source": null,
+      "selected_for_reading": false,
+      "title": "NOSIX: a lightweight portability layer for the SDN OS",
+      "venue": "CCRV",
+      "year": 2014
+    },
+    {
+      "abstract_only": true,
+      "citation_count": 0,
+      "doi": "10.1007/s10922-026-10087-w",
+      "embedding_score": null,
+      "expanded_for_crawl": false,
+      "graph_depth": 1,
+      "id": "53e3f6eab8907a12baba620e3e942951aa5dc3df",
+      "lexical_score": 0.0,
+      "paper_id": "53e3f6eab8907a12baba620e3e942951aa5dc3df",
+      "parent_paper_id": "463e7d2a62b1f15cc2daba34230297827e7c6757",
+      "parent_relation": "citation",
+      "pdf_candidates": [],
+      "pdf_path": null,
+      "pdf_url": "",
+      "ranking_score": 0.0,
+      "relevance_score": 0.0,
+      "resolution_source": null,
+      "selected_for_reading": false,
+      "title": "Evaluating Scalability of Hierarchical Multi-controller SDN: A Holistic Approach",
+      "venue": "Journal of Network and Systems Management",
+      "year": 2026
+    }
+  ],
+  "warnings": []
+}

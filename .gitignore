@@ -1,0 +1,27 @@
+.env
+.venv/
+.agents/
+.codex/
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# Packaging/build artifacts
+*.egg-info/
+build/
+dist/
+
+# Runtime output. Keep only curated example graph artifacts.
+runs/*
+!runs/readme-example/
+!runs/readme-example/manifest.json
+!runs/readme-example/graph.json
+!runs/readme-example/graph.html
+!runs/large-example-output/
+!runs/large-example-output/manifest.json
+!runs/large-example-output/graph.json
+!runs/large-example-output/graph.html
+runs/**/pdfs/
+runs/**/institution-*.txt
+runs/**/institution-links.json
+runs/**/institution-links.md
