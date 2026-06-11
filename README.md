@@ -99,10 +99,15 @@ Useful crawl options:
 - `--depth-caps`: comma-separated per-depth discovery caps, for example `40,30`.
 - `--max-candidates`: maximum discovered candidates across the run. Default: `100`.
 - `--max-papers-to-read`: final top-ranked papers to resolve/download. Default: `20`.
+- `--max-papers-to-expand`: top ranked frontier papers to expand at each depth after the seed. Defaults to `--max-papers-to-read`.
 - `--direction`: `both`, `references`, or `citations`. Default: `both`.
 - `--no-download-pdfs`: resolve PDF URLs but do not download files.
 - `--semantic-scholar-only`: disable fallback resolvers.
+- `--s2-rps`: Semantic Scholar request speed. Default: `1.0`; use `0.5`-`0.75` for larger crawls.
+- `--s2-max-retries`: retries for throttled/transient Semantic Scholar requests. Default: `8`.
+- `--s2-429-cooldown`: seconds to wait before retrying a 429 when Semantic Scholar does not send `Retry-After`. Default: `30`.
 - `--ranker`: `lexical`, `ollama`, or `hybrid`. Default: `lexical`.
+- `--quiet`: suppress progress messages. By default, crawl progress is printed to stderr while final counts are printed to stdout.
 
 Default crawl policy is intentionally conservative:
 
@@ -112,7 +117,21 @@ Default crawl policy is intentionally conservative:
 - `direction=both`
 - Semantic Scholar pacing is capped at `1 request/second`
 
-For `depth > 1`, each frontier is ranked with the configured ranker and only the top `max_papers_to_read` papers are expanded into the next depth. Expanded papers that do not make the final top-ranked reading set are kept in the graph for context, but remain marked as not selected.
+For large crawls, treat `1 request/second` as the maximum, not the safest sustained speed. A more patient run might use:
+
+```bash
+citation-closure crawl \
+  --seed "DOI:10.1145/2656877.2656890" \
+  --out runs/p4-large \
+  --max-candidates 300 \
+  --s2-rps 0.5 \
+  --s2-max-retries 12 \
+  --s2-429-cooldown 60
+```
+
+If a Semantic Scholar relation page still fails after retries, the crawler records a manifest warning such as `citations_rate_limited` or `references_request_failed`, skips that paper's failed expansion, and continues with the rest of the crawl.
+
+For `depth > 1`, each frontier is ranked with the configured ranker and only the top `max_papers_to_expand` papers are expanded into the next depth. By default, this matches `max_papers_to_read`, but you can raise it if you want broader graph expansion without increasing the final PDF/read set. Expanded papers that do not make the final top-ranked reading set are kept in the graph for context, but remain marked as not selected.
 
 Each run writes:
 

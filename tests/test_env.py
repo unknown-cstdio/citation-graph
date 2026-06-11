@@ -1,7 +1,7 @@
 from pathlib import Path
 import os
 
-from citation_deep_research.env import load_env_file
+from citation_deep_research.env import find_env_file, load_env_file
 
 
 def test_load_env_file_does_not_override_existing_env(tmp_path: Path, monkeypatch) -> None:
@@ -14,3 +14,12 @@ def test_load_env_file_does_not_override_existing_env(tmp_path: Path, monkeypatc
 
     assert os.environ["SEMANTIC_SCHOLAR_API_KEY"] == "exported-key"
     assert os.environ["OPENALEX_MAILTO"] == "me@example.edu"
+
+
+def test_find_env_file_searches_parent_directories(tmp_path: Path) -> None:
+    env_file = tmp_path / ".env"
+    child = tmp_path / "a" / "b"
+    child.mkdir(parents=True)
+    env_file.write_text("SEMANTIC_SCHOLAR_API_KEY=file-key\n", encoding="utf-8")
+
+    assert find_env_file(child) == env_file

@@ -9,7 +9,7 @@ from pathlib import Path
 from .clients import OpenAlexClient, SemanticScholarClient, UnpaywallClient
 from .env import load_env_file
 from .importer import import_pdfs
-from .pipeline import CitationClosurePipeline
+from .pipeline import CitationClosurePipeline, stderr_progress
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -31,6 +31,11 @@ def build_parser() -> argparse.ArgumentParser:
     )
     crawl.add_argument("--max-papers-to-read", type=int, default=20, help="Top papers to resolve/download. Default: 20.")
     crawl.add_argument(
+        "--max-papers-to-expand",
+        type=int,
+        help="Top ranked frontier papers to expand at each depth after the seed. Defaults to --max-papers-to-read.",
+    )
+    crawl.add_argument(
         "--direction",
         choices=["both", "references", "citations"],
         default="both",
@@ -50,7 +55,19 @@ def build_parser() -> argparse.ArgumentParser:
         "--s2-rps",
         type=float,
         default=1.0,
-        help="Semantic Scholar requests per second. Keep at 1.0 for the requested key.",
+        help="Semantic Scholar requests per second. Use <= 1.0; try 0.5-0.75 for larger crawls. Default: 1.0.",
+    )
+    crawl.add_argument(
+        "--s2-max-retries",
+        type=int,
+        default=8,
+        help="Maximum retries for throttled/transient Semantic Scholar requests. Default: 8.",
+    )
+    crawl.add_argument(
+        "--s2-429-cooldown",
+        type=float,
+        default=30.0,
+        help="Minimum seconds to wait before retrying a Semantic Scholar 429 without Retry-After. Default: 30.",
     )
     crawl.add_argument(
         "--ranker",
@@ -72,6 +89,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--no-ranker-fallback",
         action="store_true",
         help="Fail instead of falling back to lexical ranking if Ollama embedding fails.",
+    )
+    crawl.add_argument(
+        "--quiet",
+        action="store_true",
+        help="Suppress crawl progress messages. Final counts are still printed.",
     )
 
     import_cmd = subparsers.add_parser("import-pdfs", help="Import manually downloaded PDFs into a crawl run.")
@@ -99,31 +121,57 @@ def main(argv: list[str] | None = None) -> int:
 
 
 def crawl_command(args: argparse.Namespace) -> int:
-    if args.s2_rps > 1.0:
-        print("Semantic Scholar rate must be <= 1 request/second for this MVP.", file=sys.stderr)
+    if args.s2_rps <= 0 or args.s2_rps > 1.0:
+        print("Semantic Scholar rate must be > 0 and <= 1 request/second for this MVP.", file=sys.stderr)
         return 2
+    if args.s2_max_retries < 0:
+        print("Semantic Scholar max retries must be >= 0.", file=sys.stderr)
+        return 2
+    if args.s2_429_cooldown < 0:
+        print("Semantic Scholar 429 cooldown must be >= 0.", file=sys.stderr)
+        return 2
+    if args.max_papers_to_expand is not None and args.max_papers_to_expand <= 0:
+        print("Max papers to expand must be positive.", file=sys.stderr)
+        return 2
+    progress = None if args.quiet else stderr_progress
+    if progress:
+        auth_status = "yes" if os.getenv("SEMANTIC_SCHOLAR_API_KEY") else "no"
+        progress(f"Semantic Scholar API key loaded: {auth_status}")
     pipeline = CitationClosurePipeline(
-        semantic_scholar=SemanticScholarClient(requests_per_second=args.s2_rps),
+        semantic_scholar=SemanticScholarClient(
+            requests_per_second=args.s2_rps,
+            max_retries=args.s2_max_retries,
+            throttle_cooldown=args.s2_429_cooldown,
+            retry_progress=progress,
+        ),
         openalex=OpenAlexClient() if os.getenv("OPENALEX_MAILTO") else None,
         unpaywall=UnpaywallClient() if os.getenv("UNPAYWALL_EMAIL") else None,
     )
-    manifest = pipeline.crawl(
-        seed=args.seed,
-        query=args.query,
-        out_dir=args.out,
-        depth=args.depth,
-        max_candidates=args.max_candidates,
-        max_papers_to_read=args.max_papers_to_read,
-        direction=args.direction,
-        download_pdfs=not args.no_download_pdfs,
-        use_fallbacks=not args.semantic_scholar_only,
-        semantic_scholar_requests_per_second=args.s2_rps,
-        ranker=args.ranker,
-        embedding_model=args.embedding_model,
-        ollama_url=args.ollama_url,
-        allow_ranker_fallback=not args.no_ranker_fallback,
-        depth_caps=parse_depth_caps(args.depth_caps),
-    )
+    try:
+        manifest = pipeline.crawl(
+            seed=args.seed,
+            query=args.query,
+            out_dir=args.out,
+            depth=args.depth,
+            max_candidates=args.max_candidates,
+            max_papers_to_read=args.max_papers_to_read,
+            max_papers_to_expand=args.max_papers_to_expand,
+            direction=args.direction,
+            download_pdfs=not args.no_download_pdfs,
+            use_fallbacks=not args.semantic_scholar_only,
+            semantic_scholar_requests_per_second=args.s2_rps,
+            semantic_scholar_max_retries=args.s2_max_retries,
+            semantic_scholar_429_cooldown=args.s2_429_cooldown,
+            ranker=args.ranker,
+            embedding_model=args.embedding_model,
+            ollama_url=args.ollama_url,
+            allow_ranker_fallback=not args.no_ranker_fallback,
+            depth_caps=parse_depth_caps(args.depth_caps),
+            progress=progress,
+        )
+    except RuntimeError as exc:
+        print(f"Crawl failed before outputs could be written: {exc}", file=sys.stderr)
+        return 1
     data = manifest.to_dict()
     print(json.dumps(data["counts"], indent=2, sort_keys=True))
     print(f"Wrote manifest: {args.out / 'manifest.json'}")

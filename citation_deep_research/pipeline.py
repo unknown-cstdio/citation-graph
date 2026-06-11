@@ -2,11 +2,13 @@ from __future__ import annotations
 
 import json
 import requests
+import sys
 from math import ceil
 from datetime import UTC, datetime
 from pathlib import Path
+from typing import Callable
 
-from .clients import OpenAlexClient, SemanticScholarClient, UnpaywallClient
+from .clients import HttpRequestError, OpenAlexClient, SemanticScholarClient, UnpaywallClient
 from .institution import write_institution_links
 from .models import CitationEdge, CrawlWarning, Manifest, PaperRecord
 from .ollama import OllamaEmbeddingClient
@@ -36,23 +38,29 @@ class CitationClosurePipeline:
         depth: int = 1,
         max_candidates: int = 100,
         max_papers_to_read: int = 20,
+        max_papers_to_expand: int | None = None,
         direction: str = "both",
         download_pdfs: bool = True,
         use_fallbacks: bool = True,
         semantic_scholar_requests_per_second: float = 1.0,
+        semantic_scholar_max_retries: int = 8,
+        semantic_scholar_429_cooldown: float = 30.0,
         ranker: str = "lexical",
         embedding_model: str = "nomic-embed-text",
         ollama_url: str = "http://localhost:11434",
         allow_ranker_fallback: bool = True,
         depth_caps: list[int] | None = None,
+        progress: Callable[[str], None] | None = None,
     ) -> Manifest:
         out_dir.mkdir(parents=True, exist_ok=True)
         pdf_dir = out_dir / "pdfs"
 
+        emit_progress(progress, f"Resolving seed: {seed}")
         seed_paper = self.semantic_scholar.resolve_seed(seed)
         if not seed_paper.paper_id:
             raise RuntimeError("Resolved seed has no Semantic Scholar paperId; cannot crawl citation graph")
         seed_paper.graph_depth = 0
+        emit_progress(progress, f"Resolved seed paper: {short_title(seed_paper)} [{seed_paper.paper_id}]")
 
         papers: list[PaperRecord] = [seed_paper]
         edges: list[CitationEdge] = []
@@ -70,10 +78,17 @@ class CitationClosurePipeline:
             depth_cap = cap_for_depth(depth_caps, depth_index, max_candidates)
             remaining_budget = min(max_candidates + 1 - len(papers), depth_cap)
             if remaining_budget <= 0:
+                emit_progress(progress, f"Stopping before depth {depth_index + 1}: candidate budget exhausted.")
                 break
+            emit_progress(
+                progress,
+                f"Depth {depth_index + 1}/{depth}: frontier={len(frontier)}, discovered={len(papers)}, "
+                f"remaining_depth_budget={remaining_budget}",
+            )
             if depth_index == 0:
                 expansion_frontier = frontier
             else:
+                emit_progress(progress, f"Ranking frontier for depth {depth_index + 1} expansion using {effective_ranker}.")
                 expansion_frontier, effective_ranker, frontier_warning = rank_with_configured_ranker(
                     frontier,
                     ranking_query,
@@ -87,20 +102,31 @@ class CitationClosurePipeline:
                 )
                 if frontier_warning:
                     warnings.append(frontier_warning)
-                expansion_frontier = expansion_frontier[:max_papers_to_read]
+                    emit_progress(progress, f"Warning: {frontier_warning.code}: {frontier_warning.message}")
+                expansion_limit = max_papers_to_expand or max_papers_to_read
+                expansion_frontier = expansion_frontier[:expansion_limit]
                 for paper in expansion_frontier:
                     if paper.paper_id:
                         paper.expanded_for_crawl = True
+                emit_progress(progress, f"Expanding top {len(expansion_frontier)} ranked frontier papers.")
             parent_budget = max(1, ceil(remaining_budget / max(1, len(expansion_frontier))))
-            for current in expansion_frontier:
+            for parent_index, current in enumerate(expansion_frontier, start=1):
                 if not current.paper_id or len(papers) >= max_candidates + 1:
                     continue
                 remaining_budget = min(max_candidates + 1 - len(papers), depth_cap - len(next_frontier))
                 if remaining_budget <= 0:
                     break
                 neighbor_limit = min(parent_budget, remaining_budget)
+                emit_progress(
+                    progress,
+                    f"Expanding {parent_index}/{len(expansion_frontier)} at depth {depth_index + 1}: "
+                    f"{short_title(current)} ({direction}, limit={neighbor_limit})",
+                )
+                before_count = len(papers)
                 neighbors, relation_warnings = self._neighbors(current.paper_id, direction, neighbor_limit)
                 warnings.extend(relation_warnings)
+                for warning in relation_warnings:
+                    emit_progress(progress, f"Warning: {warning.code}: {warning.message}")
                 for relation, neighbor in neighbors:
                     if not neighbor.paper_id:
                         continue
@@ -116,11 +142,17 @@ class CitationClosurePipeline:
                     seen_frontier.add(neighbor.paper_id)
                     if len(papers) >= max_candidates + 1:
                         break
+                emit_progress(
+                    progress,
+                    f"Finished expansion: added {len(papers) - before_count} new papers; discovered={len(papers)}.",
+                )
             frontier = next_frontier
             if not frontier:
+                emit_progress(progress, f"Stopping after depth {depth_index + 1}: no new frontier papers.")
                 break
 
         deduped = dedupe_papers(papers)
+        emit_progress(progress, f"Ranking {len(deduped)} deduplicated papers using {effective_ranker}.")
         ranked, effective_ranker, final_ranker_warning = rank_with_configured_ranker(
             deduped,
             ranking_query,
@@ -134,7 +166,9 @@ class CitationClosurePipeline:
         )
         if final_ranker_warning:
             warnings.append(final_ranker_warning)
+            emit_progress(progress, f"Warning: {final_ranker_warning.code}: {final_ranker_warning.message}")
         selected = ranked[:max_papers_to_read]
+        emit_progress(progress, f"Selected top {len(selected)} papers for PDF resolution.")
 
         resolver = PdfResolver(
             openalex=self.openalex,
@@ -142,8 +176,9 @@ class CitationClosurePipeline:
             download_pdfs=download_pdfs,
             use_fallbacks=use_fallbacks,
         )
-        for paper in selected:
+        for paper_index, paper in enumerate(selected, start=1):
             paper.selected_for_reading = True
+            emit_progress(progress, f"Resolving PDF {paper_index}/{len(selected)}: {short_title(paper)}")
             resolver.resolve(paper, pdf_dir)
 
         selected_ids = [display_id(paper) for paper in selected]
@@ -158,10 +193,13 @@ class CitationClosurePipeline:
                 "depth": depth,
                 "max_candidates": max_candidates,
                 "max_papers_to_read": max_papers_to_read,
+                "max_papers_to_expand": max_papers_to_expand or max_papers_to_read,
                 "direction": direction,
                 "download_pdfs": download_pdfs,
                 "use_fallbacks": use_fallbacks,
                 "semantic_scholar_requests_per_second": semantic_scholar_requests_per_second,
+                "semantic_scholar_max_retries": semantic_scholar_max_retries,
+                "semantic_scholar_429_cooldown": semantic_scholar_429_cooldown,
                 "ranker": ranker,
                 "effective_ranker": effective_ranker,
                 "embedding_model": embedding_model if ranker in {"ollama", "hybrid"} else None,
@@ -172,7 +210,9 @@ class CitationClosurePipeline:
             selected_paper_ids=selected_ids,
             generated_at=datetime.now(UTC).isoformat(),
         )
+        emit_progress(progress, "Writing manifest, graph, visualization, and institution-link artifacts.")
         write_outputs(manifest, out_dir)
+        emit_progress(progress, f"Done: papers={len(ranked)}, edges={len(manifest.edges)}, warnings={len(warnings)}.")
         return manifest
 
     def _neighbors(
@@ -187,11 +227,17 @@ class CitationClosurePipeline:
         references: list[PaperRecord] = []
         citations: list[PaperRecord] = []
         if direction in {"both", "references"}:
-            references, reference_warnings = self.semantic_scholar.references(paper_id, limit=per_direction_limit)
-            warnings.extend(reference_warnings)
+            try:
+                references, reference_warnings = self.semantic_scholar.references(paper_id, limit=per_direction_limit)
+                warnings.extend(reference_warnings)
+            except RuntimeError as exc:
+                warnings.append(relation_request_failed_warning(paper_id, "references", exc))
         if direction in {"both", "citations"}:
-            citations, citation_warnings = self.semantic_scholar.citations(paper_id, limit=per_direction_limit)
-            warnings.extend(citation_warnings)
+            try:
+                citations, citation_warnings = self.semantic_scholar.citations(paper_id, limit=per_direction_limit)
+                warnings.extend(citation_warnings)
+            except RuntimeError as exc:
+                warnings.append(relation_request_failed_warning(paper_id, "citations", exc))
         if direction == "both":
             neighbors.extend(interleave_relation_papers(references, citations, max_candidates))
         elif direction == "references":
@@ -205,6 +251,40 @@ def citation_edge(source_paper_id: str, neighbor_paper_id: str, relation: str) -
     if relation == "reference":
         return CitationEdge(source=source_paper_id, target=neighbor_paper_id, relation=relation)
     return CitationEdge(source=neighbor_paper_id, target=source_paper_id, relation=relation)
+
+
+def relation_request_failed_warning(paper_id: str, relation: str, exc: RuntimeError) -> CrawlWarning:
+    status_code = exc.status_code if isinstance(exc, HttpRequestError) else None
+    code = f"{relation}_request_failed"
+    if status_code == 429:
+        code = f"{relation}_rate_limited"
+    return CrawlWarning(
+        code=code,
+        message=f"Semantic Scholar {relation} request failed; skipped this expansion and continued crawl.",
+        paper_id=paper_id,
+        relation=relation,
+        details={
+            "status_code": status_code,
+            "url": exc.url if isinstance(exc, HttpRequestError) else None,
+            "error": str(exc),
+        },
+    )
+
+
+def emit_progress(progress: Callable[[str], None] | None, message: str) -> None:
+    if progress:
+        progress(message)
+
+
+def stderr_progress(message: str) -> None:
+    print(f"[citation-closure] {message}", file=sys.stderr, flush=True)
+
+
+def short_title(paper: PaperRecord, max_length: int = 90) -> str:
+    title = paper.title or paper.paper_id or "unknown paper"
+    if len(title) <= max_length:
+        return title
+    return f"{title[: max_length - 1]}..."
 
 
 def rank_with_configured_ranker(

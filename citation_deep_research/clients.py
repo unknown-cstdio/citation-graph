@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 import os
+import random
 import re
 import time
-from typing import Any
+from typing import Any, Callable
 from urllib.parse import quote
 
 import requests
@@ -16,6 +17,21 @@ from .text import extract_doi, normalize_doi
 RETRY_STATUSES = {429, 500, 502, 503, 504}
 
 
+class HttpRequestError(RuntimeError):
+    def __init__(
+        self,
+        message: str,
+        *,
+        url: str,
+        status_code: int | None = None,
+        response_text: str | None = None,
+    ) -> None:
+        super().__init__(message)
+        self.url = url
+        self.status_code = status_code
+        self.response_text = response_text
+
+
 class HttpClient:
     def __init__(
         self,
@@ -25,11 +41,21 @@ class HttpClient:
         rate_limiter: RateLimiter | None = None,
         timeout: float = 30.0,
         max_retries: int = 3,
+        retry_base_sleep: float = 1.0,
+        retry_max_sleep: float = 60.0,
+        retry_jitter: float = 0.25,
+        throttle_cooldown: float = 30.0,
+        retry_progress: Callable[[str], None] | None = None,
     ) -> None:
         self.base_url = base_url.rstrip("/")
         self.rate_limiter = rate_limiter
         self.timeout = timeout
         self.max_retries = max_retries
+        self.retry_base_sleep = retry_base_sleep
+        self.retry_max_sleep = retry_max_sleep
+        self.retry_jitter = retry_jitter
+        self.throttle_cooldown = throttle_cooldown
+        self.retry_progress = retry_progress
         self.session = requests.Session()
         self.session.headers.update(headers or {})
 
@@ -42,8 +68,8 @@ class HttpClient:
             try:
                 response = self.session.get(url, params=params, timeout=self.timeout)
                 if response.status_code in RETRY_STATUSES and attempt < self.max_retries:
-                    retry_after = response.headers.get("Retry-After")
-                    sleep_for = float(retry_after) if retry_after else 2**attempt
+                    sleep_for = self.retry_sleep(response, attempt)
+                    self.emit_retry_progress(url, response.status_code, attempt, sleep_for)
                     time.sleep(sleep_for)
                     continue
                 response.raise_for_status()
@@ -51,13 +77,47 @@ class HttpClient:
             except requests.RequestException as exc:
                 if getattr(exc, "response", None) is not None:
                     response_text = exc.response.text[:500]
-                    last_error = RuntimeError(f"{exc}; response={response_text}")
+                    last_error = HttpRequestError(
+                        f"{exc}; response={response_text}",
+                        url=url,
+                        status_code=exc.response.status_code,
+                        response_text=response_text,
+                    )
                 else:
                     last_error = exc
                 if attempt >= self.max_retries:
                     break
-                time.sleep(2**attempt)
-        raise RuntimeError(f"GET failed for {url}: {last_error}") from last_error
+                response = getattr(exc, "response", None)
+                sleep_for = self.retry_sleep(response, attempt)
+                self.emit_retry_progress(url, getattr(response, "status_code", None), attempt, sleep_for)
+                time.sleep(sleep_for)
+        if isinstance(last_error, HttpRequestError):
+            raise last_error
+        raise HttpRequestError(f"GET failed for {url}: {last_error}", url=url) from last_error
+
+    def retry_sleep(self, response: requests.Response | None, attempt: int) -> float:
+        if response is not None:
+            retry_after = response.headers.get("Retry-After")
+            if retry_after:
+                try:
+                    return max(0.0, min(float(retry_after), self.retry_max_sleep))
+                except ValueError:
+                    pass
+        sleep_for = self.retry_base_sleep * (2**attempt)
+        if response is not None and response.status_code == 429:
+            sleep_for = max(sleep_for, self.throttle_cooldown)
+        if self.retry_jitter > 0:
+            sleep_for += random.uniform(0, self.retry_jitter)
+        return max(0.0, min(sleep_for, self.retry_max_sleep))
+
+    def emit_retry_progress(self, url: str, status_code: int | None, attempt: int, sleep_for: float) -> None:
+        if not self.retry_progress:
+            return
+        status = status_code if status_code is not None else "network error"
+        self.retry_progress(
+            f"Semantic Scholar request got {status}; retry {attempt + 1}/{self.max_retries} "
+            f"in {sleep_for:.1f}s: {url}"
+        )
 
 
 class SemanticScholarClient:
@@ -96,7 +156,15 @@ class SemanticScholarClient:
         ]
     )
 
-    def __init__(self, api_key: str | None = None, requests_per_second: float = 1.0) -> None:
+    def __init__(
+        self,
+        api_key: str | None = None,
+        requests_per_second: float = 1.0,
+        *,
+        max_retries: int = 8,
+        throttle_cooldown: float = 30.0,
+        retry_progress: Callable[[str], None] | None = None,
+    ) -> None:
         api_key = api_key or os.getenv("SEMANTIC_SCHOLAR_API_KEY")
         headers = {"User-Agent": "citation-graph-deep-research/0.1.0"}
         if api_key:
@@ -105,6 +173,9 @@ class SemanticScholarClient:
             base_url=self.BASE_URL,
             headers=headers,
             rate_limiter=RateLimiter(requests_per_second),
+            max_retries=max_retries,
+            throttle_cooldown=throttle_cooldown,
+            retry_progress=retry_progress,
         )
 
     def resolve_seed(self, seed: str) -> PaperRecord:
